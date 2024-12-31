@@ -46,10 +46,10 @@ export default function MobileNavbar() {
           Enjoy TravelokaPay and cheaper prices
         </p>
         <div className="flex justify-center gap-4 p-2">
-          <ButtonAuth className="bg-color text-white text-center">
+          <ButtonAuth href="/login" className="bg-color text-white text-center">
             Log In
           </ButtonAuth>
-          <ButtonAuth className="bg-white text-color text-white text-center">
+          <ButtonAuth href="/login" className="bg-white text-color text-white text-center">
             RegIster
           </ButtonAuth>
         </div>
