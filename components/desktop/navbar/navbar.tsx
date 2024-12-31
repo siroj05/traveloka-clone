@@ -157,12 +157,24 @@ export default function DesktopNavbar() {
         </div>
       </nav>
       <div className="relative w-full h-[50vh]">
+        {/* Konten Overlay */}
+        <div className="absolute top-1/4 left-0 w-full h-full z-10">
+          <div className="w-[1200px] mx-auto">
+            <div className="flex justify-between p-2">
+              Hotels
+            </div>
+            <hr />
+          </div>
+        </div>
+
+        {/* Background Image */}
         <Image
           src="bgnavbar.svg"
           alt="Background Navbar"
           layout="fill"
           objectFit="cover"
           priority
+          className="z-0"
         />
       </div>
     </>
