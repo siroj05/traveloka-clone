@@ -5,9 +5,15 @@ import ButtonAuth from "@/components/button-auth";
 import { useEffect, useState } from "react";
 import { NavigationCategory, NavigationTabs } from "./navTabs";
 import FilterHotels from "./filter";
+import PopupLogin from "../login/popupLogin";
 
 export default function DesktopNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+
+  const togglePopup = () => {
+    setIsVisible(!isVisible)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,10 +100,10 @@ export default function DesktopNavbar() {
                 </div>
               </button>
               <div className="flex gap-1">
-                <ButtonAuth href={"/login"} className={`text-center my-auto w-[80px]  ${isScrolled ? `border-sky-500 hover:bg-slate-200` : 'border-white hover:bg-sky-900'}`}>
+                <ButtonAuth toggle={togglePopup} className={`text-center my-auto w-[80px]  ${isScrolled ? `border-sky-500 hover:bg-slate-200` : 'border-white hover:bg-sky-900'}`}>
                   Log In
                 </ButtonAuth>
-                <ButtonAuth href={"/login"} className={`text-center my-auto w-[80px] text-white ${isScrolled ? 'hover:bg-slate-200' : 'hover:bg-sky-900'}  bg-blue-500`}>
+                <ButtonAuth toggle={togglePopup} className={`text-center my-auto w-[80px] text-white ${isScrolled ? 'hover:bg-slate-200' : 'hover:bg-sky-900'}  bg-blue-500`}>
                   RegIster
                 </ButtonAuth>
               </div>
@@ -161,7 +167,7 @@ export default function DesktopNavbar() {
       </nav>
       <div className="relative w-full h-[50vh]">
         {/* Nav Tabs */}
-        <div className="absolute top-1/4 left-0 w-full h-full z-10">
+        <div className="absolute top-1/4 left-0 w-full h-50 z-10">
           <div className="w-[1200px] mx-auto">
             <NavigationTabs/>
             <hr />
@@ -186,7 +192,15 @@ export default function DesktopNavbar() {
           priority
           className="z-0"
         />
+      
       </div>
+
+      {/* popup login / regis */}
+      <PopupLogin
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+        togglePopup={togglePopup}
+      />
     </>
   );
 }

@@ -79,6 +79,14 @@ body {
   background-color: rgb(1 148 243);
 }
 
+.bg-sosmed {
+  background-color: rgb(209 240 255);
+}
+
+.text-sosmed {
+  color: rgb(22 87 147);
+}
+
 .text-primary{
   color: rgb(1 148 243);
 }
