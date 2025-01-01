@@ -6,14 +6,33 @@ import { useEffect, useState } from "react";
 import { NavigationCategory, NavigationTabs } from "./navTabs";
 import FilterHotels from "./filter";
 import PopupLogin from "../login/popupLogin";
+import PopupSuccess from "../login/popupSucces";
+
+export type DataUserModel = {
+  username : string,
+  success : boolean
+}
 
 export default function DesktopNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [dataUser, setDataUser] = useState<DataUserModel>({username : '', success : false})
 
   const togglePopup = () => {
     setIsVisible(!isVisible)
   }
+
+  useEffect(() => {
+    if (dataUser.success) {
+      setIsSuccess(true);
+      setIsVisible(false)
+      const timeout = setTimeout(() => {
+        setIsSuccess(false);
+      }, 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [dataUser]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -200,7 +219,13 @@ export default function DesktopNavbar() {
         isVisible={isVisible}
         setIsVisible={setIsVisible}
         togglePopup={togglePopup}
+        setDataUser={setDataUser}
+        dataUser={dataUser}
       />
+      <PopupSuccess
+        isVisible={isSuccess}
+      />
+
     </>
   );
 }

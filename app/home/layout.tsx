@@ -11,6 +11,7 @@ interface Props {
 
 export default function Layout({children} : Props){
   const matches = useMediaQuery("(max-width: 600px)");
+  
   return(
     <div>
        {matches && <MobileNavbar/>}
