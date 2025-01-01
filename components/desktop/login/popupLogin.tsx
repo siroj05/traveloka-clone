@@ -1,4 +1,5 @@
-import { X } from "lucide-react";
+import { loginApi } from "@/api/login-api";
+import { X , CircleCheck} from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -15,11 +16,16 @@ const PopupLogin = ({
 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [response, setResponse] = useState<any>()
 
   useEffect(() => {
-    
-  })
-
+    const fetchData = async () =>{
+      const result = await loginApi(email, password)
+      setResponse(result)
+    }
+    fetchData();
+  },[email, password])
+  console.log(response)
   return (
     <div className="relative">
       {/* Overlay */}
@@ -51,10 +57,19 @@ const PopupLogin = ({
               <form action="">
                 <div className="flex flex-col">
                   <label className="block mb-2 text-sm text-gray-500 font-semibold" htmlFor="email">Email/Mobile Number</label>
+                  <div className="w-full flex flex-col relative">
                   <input onChange={(e) => setEmail(e.target.value)} value={email}  placeholder="Example: +62812345678 or yourname@email.com" name="email" type="text" className="border rounded-md p-1 focus:ring-1 focus:ring-sky-100/50 focus:border-sky-400 outline-none"/>
-                  
-                  <label className="block mb-2 text-sm mt-5 text-gray-500 font-semibold" htmlFor="email">Password</label>
-                  <input onChange={(e) => setPassword(e.target.value)} value={password}  placeholder="**********" name="email" type="password" className="border rounded-md p-1 focus:ring-1 focus:ring-sky-100/50 focus:border-sky-400 outline-none"/>
+                  {response?.success && <CircleCheck className="bg-green-700 w-5 h-5 rounded-full text-white absolute right-2 top-2"/>}
+                  </div>
+                  {
+                    response?.success && <p className="text-green-600 text-sm">
+                      This account is already connected to a Traveloka account. You can simply enter your password below to login.
+                    </p>
+                  }
+                  {response?.success && <>
+                    <label className="block mb-2 text-sm mt-5 text-gray-500 font-semibold" htmlFor="email">Password</label>
+                    <input onChange={(e) => setPassword(e.target.value)} value={password}  placeholder="**********" name="email" type="password" className="border rounded-md p-1 focus:ring-1 focus:ring-sky-100/50 focus:border-sky-400 outline-none"/>
+                  </>}
                 </div>
                 <div className="mt-4">
                   <button disabled className="bg-gray-100 w-full p-3 rounded-full font-semibold text-gray-400">Continue</button>
