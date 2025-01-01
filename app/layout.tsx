@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${avenir.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${avenir.variable} ${geistMono.variable} font-sans antialiased bg-gray-100`}
       >
         {children}
       </body>

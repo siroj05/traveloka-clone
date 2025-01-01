@@ -10,13 +10,13 @@ interface Props {
 }
 
 export default function Layout({children} : Props){
-  const matches = useMediaQuery("(max-width: 600px)");
+  const matches = useMediaQuery("(max-width: 768px)");
   
   return(
     <div>
        {matches && <MobileNavbar/>}
        {!matches && <DesktopNavbar/>}
-       <div>
+       <div className={`${!matches && 'w-[1300px] mx-auto'}`}>
           {children}
        </div>
     </div>

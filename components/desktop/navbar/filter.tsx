@@ -1,5 +1,29 @@
+import { hotelsApi } from "@/api/hotels-api"
+import { usestoreDataHotels } from "@/app/home/store"
 import { Search, MapPin } from "lucide-react"
+import Link from "next/link"
+import { useState } from "react"
 export default function FilterHotels(){
+  const { setDataHotels } = usestoreDataHotels((state) => state)
+  const [searchName, setSearchName] = useState<string>('')
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSearch = async () => {
+    setIsLoading(true);
+    const data = hotelsApi();
+    if (searchName.length === 0) {
+      setDataHotels(data);
+      setIsLoading(false);
+      return;
+    }
+
+    const filterDataHotels = data.hotels.filter((hotel) =>
+      hotel.name.toLowerCase().includes(searchName.toLowerCase())
+    );
+    setDataHotels({ hotels: filterDataHotels });
+    setIsLoading(false);
+  };
+
   return (
     <div className="flex w-full font-semibold">
       <div className="w-full">
@@ -7,6 +31,8 @@ export default function FilterHotels(){
         <div className="relative">
           <MapPin className="absolute top-2 left-2 text-primary"/>
           <input 
+            onChange={(e) => setSearchName(e.target.value)}
+            value={searchName}
             name="hotel" 
             type="text" 
             className="w-full pl-10 p-2 border rounded-l-xl"
@@ -32,10 +58,12 @@ export default function FilterHotels(){
           />
         </div>
         <div>
-          <label className="block mb-2 invisible">Search</label>
-          <button className="h-[42px] px-4 bg-orange-600 border rounded-r-xl hover:bg-orange-700 transition-colors">
-            <Search className="w-4 h-4 text-white"/>
-          </button>
+            <label className="block mb-2 invisible">Search</label>
+            <Link href={'/home'}>
+              <button onClick={onSearch} className="h-[42px] px-4 bg-orange-600 border rounded-r-xl hover:bg-orange-700 transition-colors">
+                <Search className="w-4 h-4 text-white"/>
+              </button>
+            </Link>
         </div>
       </div>
     </div>

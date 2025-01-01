@@ -65,6 +65,9 @@ export default {
         semibold: '600',
         bold: '700',
       },
+			boxShadow: {
+        'left': '-1px 0 5px rgba(0, 0, 0, 0.1)',
+      },
   	}
   },
   plugins: [require("tailwindcss-animate")],

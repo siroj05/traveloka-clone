@@ -7,6 +7,9 @@ import { NavigationCategory, NavigationTabs } from "./navTabs";
 import FilterHotels from "./filter";
 import PopupLogin from "../login/popupLogin";
 import PopupSuccess from "../login/popupSucces";
+import ProfileUser from "./profile";
+import { usestorePopup } from "./store";
+import Link from "next/link";
 
 export type DataUserModel = {
   username : string,
@@ -15,9 +18,13 @@ export type DataUserModel = {
 
 export default function DesktopNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const {
+    isVisible, 
+    setIsVisible,
+    dataUser,
+    setDataUser
+  } = usestorePopup((state) => state)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [dataUser, setDataUser] = useState<DataUserModel>({username : '', success : false})
 
   const togglePopup = () => {
     setIsVisible(!isVisible)
@@ -54,25 +61,27 @@ export default function DesktopNavbar() {
       <nav className={`z-20 fixed w-full transition-colors duration-300 ${
         isScrolled ? "bg-white text-black" : "bg-transparent text-white"
       }`}>
-        <div className=" w-[1300px] mx-auto">
+        <div className="w-[1300px] mx-auto">
           {/* section 1 */}
           <div className="flex justify-between mx-10 p-2">
-            {isScrolled ? <Image
-              src="traveloka.svg"
-              alt="Background Navbar"
-              width={130}
-              height={50}
-              className="px-2"
-            />
-              :
-              <Image
-              src="traveloka-light.svg"
-              alt="Background Navbar"
-              width={130}
-              height={50}
-              className="px-2"
-            />
-          }
+            <Link href={'/home'}>
+              {isScrolled ? <Image
+                src="/traveloka.svg"
+                alt="Background Navbar"
+                width={130}
+                height={50}
+                className="px-2"
+              />
+                :
+                <Image
+                src="/traveloka-light.svg"
+                alt="Background Navbar"
+                width={130}
+                height={50}
+                className="px-2"
+              />
+            }
+            </Link>
             <div className="flex justify-between gap-5">
               <button className={`my-auto flex ${isScrolled ? 'hover:bg-slate-200' : 'hover:bg-sky-900'} py-2 rounded-sm`}>
                 <div className="my-auto mx-2 relative w-5 h-5 border-2 border-sky-700 rounded-full overflow-hidden">
@@ -87,7 +96,7 @@ export default function DesktopNavbar() {
               <button className={`my-auto flex ${isScrolled ? 'hover:bg-slate-200' : 'hover:bg-sky-900'} py-2 rounded-sm`}>
                 <div className="mx-2">
                   <Image
-                    src="sale.svg"
+                    src="/sale.svg"
                     alt="Background Navbar"
                     width={25}
                     height={25}
@@ -119,12 +128,22 @@ export default function DesktopNavbar() {
                 </div>
               </button>
               <div className="flex gap-1">
-                <ButtonAuth toggle={togglePopup} className={`text-center my-auto w-[80px]  ${isScrolled ? `border-sky-500 hover:bg-slate-200` : 'border-white hover:bg-sky-900'}`}>
-                  Log In
-                </ButtonAuth>
-                <ButtonAuth toggle={togglePopup} className={`text-center my-auto w-[80px] text-white ${isScrolled ? 'hover:bg-slate-200' : 'hover:bg-sky-900'}  bg-blue-500`}>
-                  RegIster
-                </ButtonAuth>
+
+                {
+                 dataUser.success ? 
+                 
+                  <ProfileUser dataUser={dataUser} setDataUser={setDataUser}/>
+                 
+                 : <>
+                    <ButtonAuth toggle={togglePopup} className={`text-center my-auto w-[80px]  ${isScrolled ? `border-sky-500 hover:bg-slate-200` : 'border-white hover:bg-sky-900'}`}>
+                    Log In
+                  </ButtonAuth>
+                  <ButtonAuth toggle={togglePopup} className={`text-center my-auto w-[80px] text-white ${isScrolled ? 'hover:bg-slate-200' : 'hover:bg-sky-900'}  bg-blue-500`}>
+                    RegIster
+                  </ButtonAuth>
+                  </>
+                }
+
               </div>
             </div>
           </div>
@@ -204,7 +223,7 @@ export default function DesktopNavbar() {
 
         {/* Background Image */}
         <Image
-          src="bgnavbar.svg"
+          src="/bgnavbar.svg"
           alt="Background Navbar"
           layout="fill"
           objectFit="cover"
@@ -225,7 +244,6 @@ export default function DesktopNavbar() {
       <PopupSuccess
         isVisible={isSuccess}
       />
-
     </>
   );
 }

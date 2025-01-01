@@ -1,15 +1,13 @@
-'use client'
-import { useMediaQuery } from "@/lib/hook/useMediaQuery";
 import { BadgeCheck} from "lucide-react";
 
 interface Props {
   isVisible : boolean
 }
 
-const PopupSuccess = ({
+const PopupPayment = ({
   isVisible,
 }:Props) => {
-  const matches = useMediaQuery("(max-width: 768px)");
+  
   return (
     <div className="relative">
       {/* Overlay */}
@@ -20,21 +18,20 @@ const PopupSuccess = ({
       >
         {/* Popup */}
         <div
-          className={`fixed left-1/2 transform -translate-x-1/2 bg-white rounded-lg p-6 max-w-md ${matches? 'w-[350px]' : 'w-full'}  md:w-auto transition-all duration-300 ${
+          className={`fixed left-1/2 transform -translate-x-1/2 bg-white rounded-lg p-6 max-w-md w-full md:w-auto transition-all duration-300 ${
             isVisible ? "top-1/2 -translate-y-1/2 opacity-100" : "top-full opacity-100"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
           <>
-            <div className="w-full">
+            <div className="w-[400px]">
               <div className="w-full flex justify-center">
                 <BadgeCheck className="text-color w-[250px] h-[250px]"/>
               </div>
               <div className="flex flex-col gap-4 mb-4 text-center">
                 <p className="text-3xl font-bold">
-                  Log In Successful!
+                  Payment Successful!
                 </p>
-                <p>Welcome back. It's so nice to see you again!</p>
               </div>
             </div>
           </>
@@ -44,4 +41,4 @@ const PopupSuccess = ({
   );
 };
 
-export default PopupSuccess;
+export default PopupPayment;

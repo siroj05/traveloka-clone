@@ -28,14 +28,14 @@ export default function MobileSidebar({ setIsOpen, isOpen }: Props) {
 
   return (
     <>
-    {/* background opacity */}
+      {/* background opacity */}
       <div
         className={`fixed inset-0 bg-black transition-opacity duration-300 ${
           isOpen ? "opacity-75" : "opacity-0 pointer-events-none"
         }`}
       />
 
-    {/* sidebar */}
+      {/* sidebar */}
       <nav
         className={`z-50 fixed w-full top-0 left-0 h-screen overflow-hidden transition-opacity duration-300 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -48,13 +48,75 @@ export default function MobileSidebar({ setIsOpen, isOpen }: Props) {
             }`}
           >
             <div className="flex flex-col p-3 gap-5 text-slate-600 font-medium">
-              <Link href={'#'} className="flex gap-2"><Image alt="Home" width={25} height={25} src={'home.svg'} /> Home</Link>
-              <Link href={'#'} className="flex gap-2"><Image alt="Login" width={25} height={25} src={'login.svg'} />Login / Register</Link>
-              <Link href={'#'} className="flex gap-2"><Image alt="My Booking" width={25} height={25} src={'booking.svg'} />My Booking</Link>
-              <Link href={'#'} className="flex gap-2"><Image alt="Help Center" width={25} height={25} src={'help-center.svg'} />Help Center</Link>
-              <Link href={'#'} className="flex gap-2"><Image alt="Contact Us" width={25} height={25} src={'contact-us.svg'} />Contact Us</Link>
-              <Link href={'#'} className="flex gap-2"><Image alt="Contact Us" width={25} height={25} src={'download.svg'} />Download App</Link>
-              <hr className="-mx-3 h-px bg-gray-200 border-0 dark:bg-gray-700"/>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href={"/home"}
+                className="flex gap-2"
+              >
+                <Image alt="Home" width={25} height={25} src={"/home.svg"} />{" "}
+                Home
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href={"/login"}
+                className="flex gap-2"
+              >
+                <Image alt="Login" width={25} height={25} src={"/login.svg"} />
+                Login / Register
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href={"#"}
+                className="flex gap-2"
+              >
+                <Image
+                  alt="My Booking"
+                  width={25}
+                  height={25}
+                  src={"/booking.svg"}
+                />
+                My Booking
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href={"#"}
+                className="flex gap-2"
+              >
+                <Image
+                  alt="Help Center"
+                  width={25}
+                  height={25}
+                  src={"/help-center.svg"}
+                />
+                Help Center
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href={"#"}
+                className="flex gap-2"
+              >
+                <Image
+                  alt="Contact Us"
+                  width={25}
+                  height={25}
+                  src={"/contact-us.svg"}
+                />
+                Contact Us
+              </Link>
+              <Link
+                onClick={() => setIsOpen(false)}
+                href={"#"}
+                className="flex gap-2"
+              >
+                <Image
+                  alt="Contact Us"
+                  width={25}
+                  height={25}
+                  src={"/download.svg"}
+                />
+                Download App
+              </Link>
+              <hr className="-mx-3 h-px bg-gray-200 border-0 dark:bg-gray-700" />
             </div>
           </div>
           <div className=" h-screen flex items-center">
