@@ -1,8 +1,11 @@
 'use client'
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Hotel } from "lucide-react";
 import ButtonAuth from "@/components/button-auth";
 import { useEffect, useState } from "react";
+import { NavigationCategory, NavigationTabs } from "./navTabs";
+import FilterHotels from "./filter";
+
 export default function DesktopNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -157,13 +160,20 @@ export default function DesktopNavbar() {
         </div>
       </nav>
       <div className="relative w-full h-[50vh]">
-        {/* Konten Overlay */}
+        {/* Nav Tabs */}
         <div className="absolute top-1/4 left-0 w-full h-full z-10">
           <div className="w-[1200px] mx-auto">
-            <div className="flex justify-between p-2">
-              Hotels
-            </div>
+            <NavigationTabs/>
             <hr />
+            
+            {/* nav category */}
+            <div>
+              <div className="flex gap-3 my-7 px-2">
+                <NavigationCategory/>
+              </div>
+              {/* filter */}
+              <FilterHotels/>
+            </div>
           </div>
         </div>
 

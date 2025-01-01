@@ -75,10 +75,18 @@ body {
   background-color: rgb(27 160 226);
 }
 
+.bg-primary {
+  background-color: rgb(1 148 243);
+}
+
+.text-primary{
+  color: rgb(1 148 243);
+}
+
 .shadow-inner {
   box-shadow: inset 0 0 10px rgba(135, 206, 235, 0.5);
 }
 
 .text-color {
-  color : rgb(27 160 226);
+  color: rgb(27 160 226);
 }
