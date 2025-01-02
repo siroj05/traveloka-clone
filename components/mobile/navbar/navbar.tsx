@@ -5,12 +5,14 @@ import MobileSidebar from "./sidebar";
 import ButtonAuth from "@/components/button-auth";
 import NavbarBottom from "./navbarBottom";
 import { usestorePopup } from "@/components/desktop/navbar/store";
+import FilterMobile from "./filterMobile";
 
 export default function MobileNavbar() {
   // warna #1BA0E2
-  const [search, setSearch] = useState<string>("");
+  
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { dataUser, setDataUser } = usestorePopup((state) => state);
+  
   return (
     <>
       {/* Navbar Atas */}
@@ -23,36 +25,17 @@ export default function MobileNavbar() {
           <button className="text-white px-2" onClick={() => setIsOpen(true)}>
             <Menu />
           </button>
-          <div className="relative w-full">
-            <Search className="text-slate-500 absolute h-4 w-4 top-2 left-2" />
-            <input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-sm pl-8 pr-8 p-1 focus:outline-none focus:ring-2 focus:ring-sky-300 font-medium"
-              type="text"
-            />
-          </div>
-          <div className="absolute right-4 top-4">
-            {search.length > 0 && (
-              <button
-                onClick={() => setSearch("")}
-                className="bg-slate-600 text-white rounded-full w-4 h-4 text-xs flex items-center justify-center"
-              >
-                x
-              </button>
-            )}
-          </div>
+          {/* filter */}
+          <FilterMobile/>
         </div>
       </nav>
-
       {/* Sidebar */}
       <MobileSidebar setIsOpen={setIsOpen} isOpen={isOpen} />
-
       {/* Promo Section */}
       <div className="bg-color">
-        <p className="text-white text-center text-sm font-semibold">
+        {!dataUser.success && <p className="text-white text-center text-sm font-semibold">
           Enjoy TravelokaPay and cheaper prices
-        </p>
+        </p>}
         <div className="flex justify-center gap-4 p-2">
           {dataUser.success ? (
             <div className="flex justify-between text-white gap-6">
@@ -78,7 +61,6 @@ export default function MobileNavbar() {
           )}
         </div>
       </div>
-
       {/* Navbar Bawah */}
       <NavbarBottom />
     </>

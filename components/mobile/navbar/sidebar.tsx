@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { usestorePopup } from "@/components/desktop/navbar/store";
 
 interface Props {
   setIsOpen: (value: boolean) => void;
@@ -10,7 +11,8 @@ interface Props {
 
 export default function MobileSidebar({ setIsOpen, isOpen }: Props) {
   const [mounted, setMounted] = useState(false);
-
+  const { dataUser, setDataUser } = usestorePopup((state) => state);
+  const {isFocused, setIsFocused} = usestorePopup((state) => state);
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -49,8 +51,11 @@ export default function MobileSidebar({ setIsOpen, isOpen }: Props) {
           >
             <div className="flex flex-col p-3 gap-5 text-slate-600 font-medium">
               <Link
-                onClick={() => setIsOpen(false)}
-                href={"/home"}
+                onClick={() => {
+                  setIsFocused(false)  
+                  setIsOpen(false)
+                }}
+                href={"/"}
                 className="flex gap-2"
               >
                 <Image alt="Home" width={25} height={25} src={"/home.svg"} />{" "}
@@ -58,11 +63,11 @@ export default function MobileSidebar({ setIsOpen, isOpen }: Props) {
               </Link>
               <Link
                 onClick={() => setIsOpen(false)}
-                href={"/login"}
+                href={`${dataUser.success? '#' : '/login'}`}
                 className="flex gap-2"
               >
                 <Image alt="Login" width={25} height={25} src={"/login.svg"} />
-                Login / Register
+                {dataUser.success? 'My Account' : 'Login / Register'}
               </Link>
               <Link
                 onClick={() => setIsOpen(false)}
