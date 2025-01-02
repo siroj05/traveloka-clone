@@ -6,14 +6,11 @@ import { useState } from "react"
 export default function FilterHotels(){
   const { setDataHotels } = usestoreDataHotels((state) => state)
   const [searchName, setSearchName] = useState<string>('')
-  const [isLoading, setIsLoading] = useState(false);
 
   const onSearch = async () => {
-    setIsLoading(true);
     const data = hotelsApi();
     if (searchName.length === 0) {
       setDataHotels(data);
-      setIsLoading(false);
       return;
     }
 
@@ -21,7 +18,6 @@ export default function FilterHotels(){
       hotel.name.toLowerCase().includes(searchName.toLowerCase())
     );
     setDataHotels({ hotels: filterDataHotels });
-    setIsLoading(false);
   };
 
   return (

@@ -11,8 +11,8 @@ interface Props {
 
 export default function MobileSidebar({ setIsOpen, isOpen }: Props) {
   const [mounted, setMounted] = useState(false);
-  const { dataUser, setDataUser } = usestorePopup((state) => state);
-  const {isFocused, setIsFocused} = usestorePopup((state) => state);
+  const { dataUser } = usestorePopup((state) => state);
+  const { setIsFocused} = usestorePopup((state) => state);
   useEffect(() => {
     setMounted(true);
   }, []);

@@ -1,4 +1,4 @@
-import { TableProperties , BookmarkCheck, Home, User, Settings } from "lucide-react";
+import { TableProperties , BookmarkCheck, Home, User } from "lucide-react";
 
 export default function NavbarBottom () {
   return(

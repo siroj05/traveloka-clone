@@ -13,7 +13,7 @@ export default function Hotels({ data }: Props) {
       {data?.hotels &&
         data.hotels.map((item: any, i: number) => {
           return(
-            <Link key={item.name} href={`home/${item.id}/hotel`}>
+            <Link key={i} href={`home/${item.id}/hotel`}>
               <div>
                 <div className="border w-full flex my-5 rounded-lg shadow-lg">
                   <div className="relative">

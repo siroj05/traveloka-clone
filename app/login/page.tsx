@@ -13,7 +13,6 @@ export default function LoginUser() {
   const [passwordValid, setPasswordValid] = useState<boolean>(true);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const {
-      dataUser,
       setDataUser
     } = usestorePopup((state) => state)
   const router = useRouter()

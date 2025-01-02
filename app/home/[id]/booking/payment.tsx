@@ -4,7 +4,7 @@ import { usestorePopup } from "@/components/desktop/navbar/store";
 import { useState } from "react";
 
 export default function Payment() {
-  const { isVisible, setIsVisible, dataUser, setDataUser } = usestorePopup(
+  const { setIsVisible, dataUser } = usestorePopup(
     (state) => state
   );
   const [success, setIsSuccess] = useState<boolean>(false)

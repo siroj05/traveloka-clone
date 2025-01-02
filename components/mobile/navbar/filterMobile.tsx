@@ -8,16 +8,13 @@ import { useEffect, useState } from "react";
 export default function FilterMobile() {
   const [searchName, setSearchName] = useState<string>("");
   const {isFocused, setIsFocused} = usestorePopup((state) => state);
-  const [isLoading, setIsLoading] = useState(false);
   const [temp, setTemp] = useState(hotelsApi());
   const { setDataHotels } = usestoreDataHotels((state) => state);
 
   const onSearch = async () => {
-    setIsLoading(true);
     const data = hotelsApi();
     if (searchName.length === 0) {
       setDataHotels(data);
-      setIsLoading(false);
       return;
     }
 
@@ -25,7 +22,6 @@ export default function FilterMobile() {
       hotel.name.toLowerCase().includes(searchName.toLowerCase())
     );
     setDataHotels({ hotels: filterDataHotels });
-    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -67,7 +63,12 @@ export default function FilterMobile() {
                 {` Search Traveloka for "${searchName}"`}
               </p>}
             </div>
-            <ArrowRight className="text-primary h-5 w-5 my-auto" />
+            <button onClick={() => {
+                onSearch()
+                setIsFocused(false)
+              }}>
+              <ArrowRight className="text-primary h-5 w-5 my-auto" />
+            </button>
           </div>
           <hr />
           <p className="text-xs text-gray-600">SUGGESTED FOR YOU</p>

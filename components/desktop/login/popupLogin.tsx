@@ -1,20 +1,16 @@
 import { checkEmailApi, loginApi } from "@/api/login-api";
-import { X, CircleCheck, BadgeCheck } from "lucide-react";
+import { X, CircleCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { DataUserModel } from "../navbar/navbar";
 
 interface Props {
-  setIsVisible: (value: boolean) => void;
   setDataUser: (value: DataUserModel) => void;
-  dataUser: DataUserModel;
   isVisible: boolean;
   togglePopup: () => void;
 }
 
 const PopupLogin = ({
   setDataUser,
-  dataUser,
-  setIsVisible,
   isVisible,
   togglePopup,
 }: Props) => {

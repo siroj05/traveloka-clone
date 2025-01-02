@@ -34,7 +34,7 @@ const PopupSuccess = ({
                 <p className="text-3xl font-bold">
                   Log In Successful!
                 </p>
-                <p>Welcome back. It's so nice to see you again!</p>
+                <p>{"Welcome back. It's so nice to see you again!"}</p>
               </div>
             </div>
           </>

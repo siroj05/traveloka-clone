@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import { ChevronDown, Hotel } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import ButtonAuth from "@/components/button-auth";
 import { useEffect, useState } from "react";
 import { NavigationCategory, NavigationTabs } from "./navTabs";
@@ -236,10 +236,8 @@ export default function DesktopNavbar() {
       {/* popup login / regis */}
       <PopupLogin
         isVisible={isVisible}
-        setIsVisible={setIsVisible}
         togglePopup={togglePopup}
         setDataUser={setDataUser}
-        dataUser={dataUser}
       />
       <PopupSuccess
         isVisible={isSuccess}

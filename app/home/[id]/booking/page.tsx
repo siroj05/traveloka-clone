@@ -1,5 +1,4 @@
 import { hotelsApi } from "@/api/hotels-api";
-import { usestorePopup } from "@/components/desktop/navbar/store";
 import Image from "next/image";
 import Payment from "./payment";
 

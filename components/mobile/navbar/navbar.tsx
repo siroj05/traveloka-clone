@@ -1,5 +1,5 @@
 "use client";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import MobileSidebar from "./sidebar";
 import ButtonAuth from "@/components/button-auth";
@@ -11,7 +11,7 @@ export default function MobileNavbar() {
   // warna #1BA0E2
   
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { dataUser, setDataUser } = usestorePopup((state) => state);
+  const { dataUser } = usestorePopup((state) => state);
   
   return (
     <>

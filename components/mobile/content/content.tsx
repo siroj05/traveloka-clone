@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import HotelsMobile from "./hotelsMobile";
 
 export default function MobileContent() {
  const items = [
@@ -11,7 +12,7 @@ export default function MobileContent() {
   ];
 
   return (
-    <main className="px-4 py-5">
+    <main className="px-4 py-5 flex flex-col gap-6">
       <div className="grid grid-cols-5 gap-2 text-center text-xs font-semibold">
         {items.map((item, index) => (
           <Link key={index} href={item.href} className="flex flex-col items-center space-y-2">
@@ -27,6 +28,7 @@ export default function MobileContent() {
           </Link>
         ))}
       </div>
+      <HotelsMobile/>
     </main>
   );
 }

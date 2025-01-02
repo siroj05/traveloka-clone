@@ -31,7 +31,7 @@ export default function ProfileUser({ dataUser, setDataUser }: Props) {
           <div className="bg-gray-400 mb-3 text-white">
             <div className="p-4 pb-2">
               <h3 className="font-semibold text-lg">Siroj juddin</h3>
-              <p className="text-sm">You're our Silver Priority</p>
+              <p className="text-sm">{"You're our Silver Priority"}</p>
             </div>
           </div>
             <div className="px-4 pb-3">
